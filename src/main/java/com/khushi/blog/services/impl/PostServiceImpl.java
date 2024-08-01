@@ -75,13 +75,13 @@ public class PostServiceImpl<Pageable> implements PostService{
 			sort = Sort.by(sortBy).ascending();
 		else 
 			sort = Sort.by(sortBy).descending();
-		PageRequest p = PageRequest.of(pageNumber-1, pageSize, sort);
+		PageRequest p = PageRequest.of(pageNumber, pageSize, sort);
 		Page<Post> pagePost = this.postRepo.findAll(p);
 		List<Post> posts = pagePost.getContent();
 		List<PostDto> postDtos = posts.stream().map((post) -> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
 		PostResponse postResponse = new PostResponse();
 		postResponse.setContent(postDtos);
-		postResponse.setPageNumber(pagePost.getNumber() + 1);
+		postResponse.setPageNumber(pagePost.getNumber());
 		postResponse.setPageSize(pagePost.getSize());
 		postResponse.setTotalElements(pagePost.getTotalElements());
 		postResponse.setTotalPages(pagePost.getTotalPages());

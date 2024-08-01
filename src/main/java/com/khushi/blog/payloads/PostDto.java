@@ -1,8 +1,11 @@
 package com.khushi.blog.payloads;
 
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.khushi.blog.entities.Category;
+import com.khushi.blog.entities.Comment;
 import com.khushi.blog.entities.User;
 
 import jakarta.persistence.JoinColumn;
@@ -23,4 +26,5 @@ public class PostDto {
 	private Date addedDate;
 	private CategoryDto category;
 	private UserDto user;
+	private Set<CommentDto> comments = new HashSet<>();
 }
